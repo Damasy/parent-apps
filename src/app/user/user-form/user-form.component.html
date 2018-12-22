@@ -1,0 +1,27 @@
+<form class="add-usercontainer" [formGroup]="userForm" (ngSubmit)="onSubmit($event)">
+  <!-- <img class="rounded-circle" src="./../../assets/images/team-2.jpg" /> -->
+  <div class="modal-body add-usercontainer">
+
+    <i class="fa fa-user-circle"></i>
+
+    <label class="mt-3">Name</label>
+    <input class="form-control add-user" type="text" placeholder="Name" formControlName="name">
+    <span class="alert alert-danger d-block" *ngIf="!this.userForm.get('name').valid && this.userForm.get('name').touched">
+      * name is required.
+    </span>
+
+    <label class="mt-3">Job title</label>
+    <input class="form-control add-user" type="text" placeholder="Job title" formControlName="jobTitle">
+    <span class="alert alert-danger d-block" *ngIf="!this.userForm.get('jobTitle').valid && this.userForm.get('jobTitle').touched">
+        * job title is required.
+      </span>
+
+  </div>
+  <div class="modal-footer">
+
+    <button type="button" class="btn cancel-user" data-dismiss="modal" (click)="dismiss()">Cancel</button>
+
+    <button type="submit" class="btn add-user" [disabled]="!this.userForm.valid">Add</button>
+
+  </div>
+</form>

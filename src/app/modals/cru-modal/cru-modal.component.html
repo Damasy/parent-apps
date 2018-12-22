@@ -1,36 +1,29 @@
 <!-- Modal on click Edit User button -->
+<ng-template #content let-modal>
+  <div class="modal fade bd-example-modal-sm" id="edituser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
 
-<div class="modal fade bd-example-modal-sm" id="edituser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
 
-  <div class="modal-dialog  modal-dialog-centered" role="document">
+      <div class="modal-content pt-5">
 
-    <div class="modal-content pt-5">
+        <div class="modal-body add-usercontainer">
+            <ng-content></ng-content>
+        </div>
 
-      <div class="modal-body add-usercontainer">
+        <div class="modal-footer">
 
-        <img class="rounded-circle" src="images/team-2.jpg" />
+          <a class="btn   cancel-user " data-dismiss="modal" (click)="modal.dismiss('cancel click')">Cancel</a>
 
-        <label class="mt-3">Name</label>
-        <input class="form-control add-user" type="text" />
+          <a class="btn  add-user" (click)="modal.close('Save click')">Save</a>
 
-        <label class="mt-3">Job title</label>
-        <input class="form-control add-user " type="text" />
-
-      </div>
-
-      <div class="modal-footer">
-
-        <a class="btn   cancel-user " data-dismiss="modal">Cancel</a>
-
-        <a class="btn  add-user">Save</a>
+        </div>
 
       </div>
 
     </div>
 
   </div>
-
-</div>
+</ng-template>
 
 <!-- Modal on click Edit User button -->

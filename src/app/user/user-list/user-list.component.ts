@@ -28,7 +28,6 @@ export class UserListComponent implements OnInit {
           for (let x = 0; x < this.users.data.length; x++) {
             this.allUsers.push(this.users.data[x]);
           }
-          console.log(this.allUsers, 'allUsers');
         }
       );
     }

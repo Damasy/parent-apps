@@ -16,4 +16,20 @@ export class UsersService {
     const apiURL = `${myGlobals.apihost}${apiRoot}`;
     return this.http.get(apiURL);
   }
+
+  createUser(apiRoot, body): Observable<any> {
+    const apiURL = `${myGlobals.apihost}${apiRoot}`;
+    return this.http.post(apiURL, body);
+  }
+
+  editUser(apiRoot, body): Observable<any> {
+    const apiURL = `${myGlobals.apihost}${apiRoot}`;
+    return this.http.put(apiURL, body);
+  }
+
+  deleteUser(apiRoot, body): Observable<any> {
+    const apiURL = `${myGlobals.apihost}${apiRoot}`;
+    return this.http.delete(apiURL, body);
+  }
+
 }
