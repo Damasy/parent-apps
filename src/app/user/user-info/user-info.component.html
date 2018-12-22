@@ -1,0 +1,139 @@
+<div id="edit-user" class="user-list-info collapse">
+
+  <div class="close-icon text-right">
+      <i data-target="#edit-user" data-toggle="collapse" class="fa fa-1x fa-times pr-2"></i>
+  </div>
+
+  <div class="user-list-info-content text-center mt-5">
+      <img class="item-img rounded-circle mb-3 " src="./../../../assets/images/team-1.jpg" />
+
+      <p class="mb-3">user name</p>
+
+      <button data-toggle="modal" data-target="#edituser" class="btn edit-btn"><i class="fa fa-pencil pr-1"></i>Edit</button>
+
+      <button data-toggle="modal" data-target="#deleteuser" class="btn delete-btn"><i class="fa fa-trash pr-1"></i>Delete</button>
+
+  </div>
+
+</div>
+
+
+
+    <!-- Modal on click New User button -->
+
+    <div class="modal fade bd-example-modal-sm" id="adduser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
+            <div class="modal-content pt-5">
+
+                <div class="modal-body add-usercontainer">
+
+                    <i class="fas fa-user-circle"></i>
+
+                    <label class="mt-3">Name</label>
+                    <input class="form-control add-user" type="text" />
+
+
+                    <label class="mt-3">Job title</label>
+                    <input class="form-control add-user " type="text" />
+
+
+                </div>
+
+
+                <div class="modal-footer">
+
+
+                    <a class="btn   cancel-user " data-dismiss="modal">Cancel</a>
+
+                    <a class="btn  add-user">Add</a>
+
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal on click New User button -->
+
+    <!-- Modal on click Edit User button -->
+
+    <div class="modal fade bd-example-modal-sm" id="edituser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
+            <div class="modal-content pt-5">
+
+                <div class="modal-body add-usercontainer">
+
+                    <img class="rounded-circle" src="images/team-2.jpg" />
+
+                    <label class="mt-3">Name</label>
+                    <input class="form-control add-user" type="text" />
+
+
+                    <label class="mt-3">Job title</label>
+                    <input class="form-control add-user " type="text" />
+
+
+                </div>
+
+
+                <div class="modal-footer">
+
+
+                    <a class="btn   cancel-user " data-dismiss="modal">Cancel</a>
+
+                    <a class="btn  add-user">Save</a>
+
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal on click Edit User button -->
+
+
+    <!-- Modal on click Delite User button -->
+
+    <div class="modal fade bd-example-modal-sm" id="deleteuser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
+            <div class="modal-content pt-5">
+
+                <div class="modal-body add-usercontainer text-center">
+
+                    <p>Are You Sure You Want To Delete</p>
+
+                    <p class="font-weight-bold">gad mohamed</p>
+
+
+                </div>
+
+
+                <div class="modal-footer">
+
+
+                    <a class="btn mr-3 cancel-user " data-dismiss="modal">No</a>
+
+                    <a class="btn  add-user">Yes</a>
+
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal on click Edit User button -->

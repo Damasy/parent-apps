@@ -1,0 +1,56 @@
+<app-navbar>
+  <a class="login btn text-uppercase">Login</a>
+</app-navbar>
+
+<section class="login-section">
+
+  <div class=" login-page w-50 m-auto">
+
+    <div class="row m-0">
+
+      <div class="col-md-6 p-0">
+        <img class="login-img img-fluid" src="./../../../assets/images/bg-image-30.jpg" />
+      </div>
+
+      <div class="col-md-6 p-0">
+
+        <div class="card w-100" style="width: 18rem;">
+
+          <div class="card-body mt-5">
+            <h3 class="card-title mt-5 mb-3">Welcom Back!</h3>
+            <h6 class=".card-subtitle mb-4">please Login to Access your <span>Spaces</span> Dashboard</h6>
+
+            <form class="pb-3" [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
+
+              <label>Username</label>
+              <input class="form-control" type="text" placeholder="Username.." formControlName="username" />
+              <span class="alert alert-danger d-block" *ngIf="!this.loginForm.get('username').valid && this.loginForm.get('username').touched">
+                * username is required.
+              </span>
+
+              <label>Password</label>
+              <input class="form-control" type="text" placeholder="Password" formControlName="password" />
+              <span class="alert alert-danger d-block" *ngIf="!this.loginForm.get('password').valid && this.loginForm.get('password').touched">
+                * password is required.
+              </span>
+
+
+
+              <a href="#" class="card-link loginbtn-section mr-4 ">Forget Password ?</a>
+              <button type="submit" href="#" class="card-link btn text-uppercase login"
+              [disabled]="!this.loginForm.valid">Login</button>
+
+            </form>
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
