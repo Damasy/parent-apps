@@ -187,7 +187,8 @@ form input {
   position: absolute;
   top: 0;
   right: 0;
-
+  box-shadow: -10px 0px 18px -8px #0000003d;
+  z-index: 9999;
 }
 
 .user-list-info img

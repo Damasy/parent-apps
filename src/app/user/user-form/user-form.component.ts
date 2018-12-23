@@ -1,6 +1,6 @@
 import { UsersService } from './../users.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -16,9 +16,12 @@ export class UserFormComponent implements OnInit {
   };
   apiRoot = 'users';
 
+  // tslint:disable-next-line:no-input-rename
+  @Input('user') formUser;
   constructor(private newUser: UsersService, private modalService: NgbModal) { }
 
   ngOnInit() {
+    console.log(this.formUser);
     this.userForm = new FormGroup({
       name: new FormControl('', [
         Validators.required
@@ -43,7 +46,8 @@ export class UserFormComponent implements OnInit {
     .toPromise()
     .then(res => {
         console.log(res);
-        alert('added successfully');
+        this.modalService.dismissAll();
+        alert('added successfully and status is : ' + res.status);
       }
     );
   }

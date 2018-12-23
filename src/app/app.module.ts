@@ -18,6 +18,8 @@ import { AuthGuard } from './access/auth.guard';
 import { CruModalComponent } from './modals/cru-modal/cru-modal.component';
 import { DeleteModalComponent } from './modals/delete-modal/delete-modal.component';
 import { UserFormComponent } from './user/user-form/user-form.component';
+import { DeleteUserComponent } from './user/delete-user/delete-user.component';
+import { UserViewComponent } from './user/user-view/user-view.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { UserFormComponent } from './user/user-form/user-form.component';
     UserListComponent,
     CruModalComponent,
     DeleteModalComponent,
-    UserFormComponent
+    UserFormComponent,
+    DeleteUserComponent,
+    UserViewComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,7 @@ import { UserFormComponent } from './user/user-form/user-form.component';
     RouterModule.forRoot(
       [
         { path: 'login', component: LoginComponent},
-        { path: '', component: UserListComponent}
+        { path: '', component: UserListComponent},
         { path: 'userlist',
           canActivate: [AuthGuard],
           component: UserListComponent
@@ -58,9 +62,13 @@ import { UserFormComponent } from './user/user-form/user-form.component';
     UserFormComponent,
     NgbActiveModal
   ],
-  exports: [UserFormComponent],
+  exports: [
+    UserFormComponent,
+    DeleteUserComponent
+  ],
   entryComponents: [
-    UserFormComponent
+    UserFormComponent,
+    DeleteUserComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UsersService } from '../users.service';
+import { EventEmitter } from 'events';
 
 
 @Component({
@@ -10,10 +11,13 @@ import { UsersService } from '../users.service';
 })
 export class UserListComponent implements OnInit {
 
-  users: Observable<any>;
+  users;
   allUsers = [];
   apiRoot = 'users?page=';
   loading: boolean;
+  collapsed: boolean;
+  // tslint:disable-next-line:no-output-rename
+  @Output('user') listItemEvent = new EventEmitter();
 
   constructor(private usersList: UsersService) {
     this.loading = true;
@@ -32,7 +36,12 @@ export class UserListComponent implements OnInit {
       );
     }
     this.loading = false;
+  }
 
+  viewUser(user) {
+    this.collapsed = !this.collapsed;
+    console.log(user, this.collapsed);
+    this.listItemEvent.emit(user);
   }
 
 }

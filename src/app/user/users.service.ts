@@ -27,9 +27,9 @@ export class UsersService {
     return this.http.put(apiURL, body);
   }
 
-  deleteUser(apiRoot, body): Observable<any> {
+  deleteUser(apiRoot): Observable<any> {
     const apiURL = `${myGlobals.apihost}${apiRoot}`;
-    return this.http.delete(apiURL, body);
+    return this.http.delete(apiURL);
   }
 
 }

@@ -1,5 +1,5 @@
 <!-- Modal on click Delete User button -->
-
+<ng-template #content let-modal>
 <div class="modal fade bd-example-modal-sm" id="deleteuser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
 
@@ -7,26 +7,12 @@
 
     <div class="modal-content pt-5">
 
-      <div class="modal-body add-usercontainer text-center">
-
-        <p>Are You Sure You Want To Delete</p>
-
-        <p class="font-weight-bold">user name</p>
-
-      </div>
-
-      <div class="modal-footer">
-
-        <a class="btn mr-3 cancel-user " data-dismiss="modal">No</a>
-
-        <a class="btn  add-user">Yes</a>
-
-      </div>
+      <ng-content></ng-content>
 
     </div>
 
   </div>
 
 </div>
-
+</ng-template>
 <!-- Modal on click delete User button -->
