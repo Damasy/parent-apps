@@ -8,48 +8,47 @@
 
   <div class="container">
 
-      <div class="item-list-parent">
+    <div class="item-list-parent">
 
-          <div [ngClass]="{'item-list': collapsed}" *ngIf="allUsers">
-          <!-- <div *ngIf="allUsers"> -->
+      <div [ngClass]="{'item-list': collapsed}" *ngIf="allUsers">
+        <!-- <div *ngIf="allUsers"> -->
 
-              <ul class="list-group">
-                  <li class="list-group-item d-flex justify-content-between align-items-center user-action">
-                      User
-                      <span class="badge-pill">Actions</span>
-                  </li>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center user-action">
+            User
+            <span class="badge-pill">Actions</span>
+          </li>
 
-              </ul>
+        </ul>
 
-              <ul class="list-group list-group-flush listof-user" *ngFor="let user of allUsers">
-                  <li data-target="#edit-user" data-toggle="collapse"
-                  class="list-group-item d-flex justify-content-between align-items-center user-action"
-                  (click)="viewUser(user)">
+        <ul class="list-group list-group-flush listof-user" *ngFor="let user of allUsers">
+          <li data-target="#edit-user" data-toggle="collapse"
+          class="list-group-item d-flex justify-content-between align-items-center user-action">
+            <input type="hidden" value="user" name="userRef" #userRef>
 
-                      <div class="user-info w-75 ">
-                          <img class="item-img rounded-circle "
-                          [src]="user.avatar ? user.avatar : './../../../assets/images/team-1.jpg'" />
-                          <span class="pl-2">{{ user.first_name }} {{ user.last_name }}</span>
-                      </div>
+            <div class="user-info w-75" (click)="viewUser(user)">
+              <img class="item-img rounded-circle " [src]="user.avatar ? user.avatar : './../../../assets/images/team-1.jpg'" />
+              <span class="pl-2">{{ user.first_name }} {{ user.last_name }}</span>
+            </div>
 
-                      <div class="badge badge-pill">
+            <div class="badge badge-pill">
 
-                          <i data-toggle="modal" data-target="#edituser" class="fa fa-pencil p-2 item-icon mr-2" (click)="editUser.open(user)"></i>
-                          <i data-toggle="modal" data-target="#deleteuser" class="fa fa-trash item-icon p-2" (click)="deleteUser.open(user)"></i>
-                          <i class="fa fa-angle-right ml-5"></i>
+              <i data-toggle="modal" data-target="#edituser" class="fa fa-pencil p-2 item-icon mr-2" (click)="editUser.open(user)"></i>
+              <i data-toggle="modal" data-target="#deleteuser" class="fa fa-trash item-icon p-2" (click)="deleteUser.open(user)"></i>
+              <i class="fa fa-angle-right ml-5" (click)="viewUser(user)"></i>
 
-                      </div>
-                  </li>
-              </ul>
+            </div>
+          </li>
+        </ul>
 
-              <div class="box" *ngIf="loading">
-                <div class="loader-01"></div>
-              </div>
-
-          </div>
-          <app-user-view *ngIf="collapsed" [user]="consumeUser($event)"></app-user-view>
 
       </div>
+      <div class="box" *ngIf="loading">
+        <div class="loader-01"></div>
+      </div>
+      <app-user-view *ngIf="collapsed"></app-user-view>
+
+    </div>
 
   </div>
 
@@ -59,10 +58,10 @@
 
 <!-- edit user modal -->
 <app-cru-modal #editUser>
-  <app-user-form [user]="hello"></app-user-form>
+  <app-user-form *ngIf="modalOpened"></app-user-form>
 </app-cru-modal>
 
 <!-- delete user modal -->
 <app-delete-modal #deleteUser>
-  <app-delete-user></app-delete-user>
+  <app-delete-user *ngIf="modalOpened"></app-delete-user>
 </app-delete-modal>

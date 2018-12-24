@@ -1,6 +1,6 @@
 import { UsersService } from './../users.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -15,13 +15,11 @@ export class UserFormComponent implements OnInit {
     job: ''
   };
   apiRoot = 'users';
+  currentUser;
 
-  // tslint:disable-next-line:no-input-rename
-  @Input('user') formUser;
-  constructor(private newUser: UsersService, private modalService: NgbModal) { }
+  constructor(private userList: UsersService, private modalService: NgbModal) { }
 
   ngOnInit() {
-    console.log(this.formUser);
     this.userForm = new FormGroup({
       name: new FormControl('', [
         Validators.required
@@ -29,7 +27,14 @@ export class UserFormComponent implements OnInit {
       jobTitle: new FormControl('', [
         Validators.required
       ])
-   });
+    });
+    this.currentUser = this.userList.activeUser;
+  }
+
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngAfterContentInit() {
+    this.currentUser = this.userList.activeUser;
+    console.log(this.currentUser, 'ngAfterContentInit');
   }
 
   onSubmit(event) {
@@ -42,14 +47,27 @@ export class UserFormComponent implements OnInit {
     this.newUserBodyData.name = name;
     this.newUserBodyData.job = jobTitle;
 
-    this.newUser.createUser(this.apiRoot, this.newUserBodyData)
-    .toPromise()
-    .then(res => {
-        console.log(res);
-        this.modalService.dismissAll();
-        alert('added successfully and status is : ' + res.status);
-      }
-    );
+    if (this.userList.activeUser) {
+
+      this.userList.createUser(this.apiRoot, this.newUserBodyData)
+      .toPromise()
+      .then(res => {
+          console.log(res, 'user form component add');
+          this.modalService.dismissAll();
+          alert('User added successfully and status is : ' + res.status);
+        }
+      );
+    } else {
+      this.userList.editUser(this.apiRoot, this.newUserBodyData)
+      .toPromise()
+      .then(res => {
+          console.log(res, 'user form component edit');
+          this.modalService.dismissAll();
+          alert('User edited successfully and status is : ' + res.status);
+        }
+      );
+    }
+
   }
 
   dismiss() {

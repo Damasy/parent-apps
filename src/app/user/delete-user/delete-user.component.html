@@ -2,7 +2,7 @@
 
   <p>Are You Sure You Want To Delete</p>
 
-  <p class="font-weight-bold">user name</p>
+  <p class="font-weight-bold">{{currentUser.first_name}} {{currentUser.last_name}}</p>
 
 </div>
 
@@ -10,6 +10,6 @@
 
   <a class="btn mr-3 cancel-user " data-dismiss="modal" (click)="dismiss()">No</a>
 
-  <a class="btn add-user" (click)="delete($event)">Yes</a>
+  <a class="btn add-user" (click)="delete(user)">Yes</a>
 
 </div>

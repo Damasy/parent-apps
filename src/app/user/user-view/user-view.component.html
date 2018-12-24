@@ -1,4 +1,4 @@
-<div id="edit-user" class="user-list-info" *ngIf="userinfo">
+<div id="edit-user" class="user-list-info" *ngIf="currentUser">
 
   <div class="close-icon text-right">
     <i data-target="#edit-user" data-toggle="collapse" class="fa fa-1x fa-times pr-2" (click)="dismiss()"></i>
@@ -6,16 +6,16 @@
 
 
   <div class="user-list-info-content text-center mt-5">
-    <img class="item-img rounded-circle mb-3 " [src]="userinfo.avatar ? userinfo.avatar : './../../../assets/images/team-1.jpg'" />
+    <img class="item-img rounded-circle mb-3 " [src]="currentUser.avatar ? currentUser.avatar : './../../../assets/images/team-1.jpg'" />
 
-    <p class="mb-3">{{userinfo.first_name}} {{ userinfo.last_name }}</p>
+    <p class="mb-3">{{currentUser.first_name}} {{ currentUser.last_name }}</p>
 
-    <button data-toggle="modal" data-target="#edituser" class="btn edit-btn" (click)="editUser.open(user)">
+    <button data-toggle="modal" data-target="#edituser" class="btn edit-btn" (click)="editUser.open(currentUser)">
       <i class="fas fa-pen pr-1"></i>
       Edit
     </button>
 
-    <button data-toggle="modal" data-target="#deleteuser" class="btn delete-btn" (click)="deleteUser.open(user)">
+    <button data-toggle="modal" data-target="#deleteuser" class="btn delete-btn" (click)="deleteUser.open(currentUser)">
       <i class="fas fa-trash-alt pr-1"></i>
       Delete
     </button>
@@ -26,10 +26,10 @@
 
 <!-- edit user modal -->
 <app-cru-modal #editUser>
-  <app-user-form [user]="hello"></app-user-form>
+  <app-user-form *ngIf="modalOpened"></app-user-form>
 </app-cru-modal>
 
 <!-- delete user modal -->
 <app-delete-modal #deleteUser>
-  <app-delete-user></app-delete-user>
+  <app-delete-user *ngIf="modalOpened"></app-delete-user>
 </app-delete-modal>

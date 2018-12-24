@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class UsersService {
 
+  activeUser;
   constructor(private http: Http) {
 
   }
@@ -15,6 +16,10 @@ export class UsersService {
   getUsers(apiRoot): Observable<any> {
     const apiURL = `${myGlobals.apihost}${apiRoot}`;
     return this.http.get(apiURL);
+  }
+
+  setActiveUser(user){
+    return this.activeUser = user;
   }
 
   createUser(apiRoot, body): Observable<any> {

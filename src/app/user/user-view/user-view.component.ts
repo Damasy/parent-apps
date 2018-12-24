@@ -1,3 +1,4 @@
+import { UsersService } from './../users.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -8,23 +9,15 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class UserViewComponent implements OnInit {
 
-  // tslint:disable-next-line:no-input-rename
-  @Input('user') userInfo;
-  userinfo;
-  constructor(private modalService: NgbModal) { }
+  currentUser;
+  constructor(private modalService: NgbModal, private userList: UsersService) { }
 
   ngOnInit() {
-    consumeUser($event) {
-      this.userinfo = $event;
-    }
+    this.currentUser = this.userList.activeUser;
   }
 
   dismiss() {
     this.modalService.dismissAll();
-  }
-
-  consumeUser($event) {
-    this.userinfo = $event;
   }
 
 }

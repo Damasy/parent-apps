@@ -9,15 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteUserComponent implements OnInit {
   apiRoot = 'users/';
+  currentUser;
+  currentUserID;
 
-  constructor(private deleteUser: UsersService, private modalService: NgbModal) { }
+  constructor(private userList: UsersService, private modalService: NgbModal) { }
 
   ngOnInit() {
+    this.currentUser = this.userList.activeUser;
   }
 
-  delete (event) {
-    console.log(event);
-    this.deleteUser.deleteUser(this.apiRoot);
+  delete (user) {
+    console.log(user, 'delete user component');
+    this.currentUserID = this.userList.activeUser.id;
+    this.apiRoot = this.apiRoot + this.currentUserID;
+    this.userList.deleteUser(this.apiRoot)
+    .toPromise()
+    .then(res => {
+        console.log(res, 'user delete component');
+        this.modalService.dismissAll();
+        alert('User deleted successfully and status is : ' + res.status);
+      }
+    );
     this.modalService.dismissAll();
   }
 

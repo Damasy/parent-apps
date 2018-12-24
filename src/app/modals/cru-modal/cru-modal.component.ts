@@ -1,5 +1,6 @@
+import { UsersService } from './../../user/users.service';
 import { UserFormComponent } from './../../user/user-form/user-form.component';
-import { Component, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -10,19 +11,18 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class CruModalComponent {
 
   closeResult: string;
-  // tslint:disable-next-line:no-output-rename
-  @Output('user') formUser;
+  modalOpened = false;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private userList: UsersService) {}
 
   open(user) {
+    this.modalOpened = true;
     this.modalService.open(UserFormComponent, user).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-    console.log(user);
-    this.formUser = user;
+    this.userList.setActiveUser(user);
   }
 
   dismiss() {
